@@ -2,7 +2,7 @@
   width: 413px;
 }
 
-.card_image {
+.card__image {
   height: 413px;
   width: 413px;
   object-fit: cover;
