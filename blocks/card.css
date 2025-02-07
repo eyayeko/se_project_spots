@@ -15,6 +15,11 @@
   align-items: center;
 }
 
+.card__title {
+  margin: 12px 0 0;
+  padding: 0;
+}
+
 .card__like-btn {
   background-image: url(../images/heart.svg);
   height: 20px;
