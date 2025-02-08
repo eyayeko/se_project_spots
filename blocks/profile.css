@@ -16,23 +16,49 @@
 
 .profile__name {
   margin: 0 0 12px;
-  /** font-family: ; **/
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 32px;
 }
 
 .profile__description {
   margin: 0;
-  /** font-family: ; **/
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .profile__edit-btn {
   margin-top: auto;
+  display: flex;
   align-self: flex-start;
-  /** font-family: ; **/
+  align-items: center; /* Aligns icon and text */
+  gap: 8px; /* Adds spacing between icon and text */
   background-color: #fcf5e5;
   border: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: black; /* Ensures text color matches */ /* Adds some padding */
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.profile__edit-icon {
+  width: 16px; /* Adjust icon size */
+  height: 16px;
 }
 
 .profile__add-btn {
+  background-color: #212121;
+  color: #fcf5e5;
+  border: none;
+  border-radius: 8px;
+  height: 52px;
+  width: 149px;
   margin-left: auto;
-  /** font-family: ; **/
+  margin-top: 138px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 16px;
 }
