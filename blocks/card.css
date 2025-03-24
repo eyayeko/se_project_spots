@@ -19,6 +19,9 @@
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-btn {
@@ -37,6 +40,7 @@
 
   .card__title {
     font-size: 16px;
+    max-width: 252px;
   }
   .card__like-btn {
     height: 18px;

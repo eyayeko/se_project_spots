@@ -96,11 +96,14 @@
   .profile__name {
     font-size: 20px;
     margin: 0 0 6px;
+    line-height: 100%;
+    max-width: 288px;
   }
 
   .profile__description {
     font-size: 16px;
     margin: 0 0 32px;
+    max-width: 288px;
   }
 
   .profile__column {
