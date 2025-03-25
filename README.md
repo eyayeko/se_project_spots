@@ -15,4 +15,4 @@ Spots is a responsive landing page showcasing a user profile and a collection of
 ## Deployment
 
 This webpage is deployed to Github Pages,
-found here (https://github.com/eyayeko/se_project_spots)
+found here (https://eyayeko.github.io/se_project_spots/)
