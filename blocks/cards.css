@@ -1,5 +1,6 @@
 .cards {
   padding-top: 20px;
+  border-top: 1px rgb(33, 33, 33, 0.4) solid;
 }
 
 .cards__list {
