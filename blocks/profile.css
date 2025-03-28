@@ -62,13 +62,17 @@
   padding: 0;
 }
 
+.profile__edit-btn:hover {
+  opacity: 100%;
+}
+
 .profile__edit-icon {
   width: 16px; /* not sure the size */
   height: 16px;
 }
 
 .profile__add-btn {
-  padding: 18px;
+  padding: 18px 32px;
   background-color: #212121;
   color: #fcf5e5;
   border: none;
@@ -79,12 +83,13 @@
   margin-top: 138px;
   font-weight: 500;
   font-size: 16px;
-  line-height: 18px 32px;
+  line-height: 16px;
   gap: 8px;
 }
 
 .profile__add-btn:hover {
   background-color: #212121cc;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
