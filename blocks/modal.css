@@ -1,0 +1,120 @@
+.modal {
+  visibility: hidden;
+  background: #00000080;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.modal_is-opened {
+  visibility: visible;
+}
+
+.madal____close-btn {
+  color: #212121;
+  background-color: none;
+}
+
+.modal__container {
+  background-color: #fff;
+  max-width: 730px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 32px 50px;
+  position: relative;
+}
+.modal__close-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 32px;
+  right: 50px;
+  background-image: url(../images/close-btn.svg);
+  border: none;
+  background-color: #fff;
+  opacity: 0.4;
+}
+
+.modal__close-btn:hover {
+  opacity: 1;
+}
+
+.modal__title {
+  margin: 0 0 32px;
+  padding: 0;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #212121b2;
+  margin: 0 0 32px;
+}
+.modal__input {
+  display: block;
+  width: 100%;
+  margin: 8px 0 0;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 16px 12px;
+  border-radius: 8px;
+  border: 1px solid #21212166;
+}
+
+.modal__input:hover {
+  border-color: #212121;
+}
+
+.modal__input::placeholder {
+  color: #2121214d;
+}
+
+.modal__submit-btn {
+  padding: 18px 32px;
+  border: 0;
+  border-radius: 8px;
+  color: #fcf5e5;
+  background-color: #212121;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  max-width: 156px;
+  width: 100%;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__title {
+    font-size: 20px;
+    margin: 0 0 24px;
+  }
+
+  .modal__label {
+    margin: 0 0 24px;
+  }
+  .modal__input {
+    font-size: 16px;
+    padding: 16px 12px;
+    box-sizing: border-box;
+  }
+
+  .modal__submit-btn {
+    max-width: none;
+  }
+}
