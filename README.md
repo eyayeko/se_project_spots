@@ -1,6 +1,6 @@
 # Project 3: Spots
 
-An image sharing stite
+An image sharing site
 
 ## Description
 
