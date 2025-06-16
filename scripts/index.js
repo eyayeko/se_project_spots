@@ -30,17 +30,7 @@ editProfileBtn.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
-editProfileCloseBtn.addEventListener("click", function () {
-  editProfileModal.classList.remove("modal_is-opened");
-});
-
-newPostbtn.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-  newPostModal.classList.remove("modal_is-opened");
-});
+// modal open + close
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
@@ -50,19 +40,39 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
+// button listeners
+editProfileBtn.addEventListener("click", function () {
+  editProfileNameInput.value = profileNameEl.textContent;
+  editProfileDescription.value = profileDescriptionEl.textContent;
+  openModal(editProfileModal);
+});
+
+editProfileCloseBtn.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
+
+newPostbtn.addEventListener("click", function () {
+  openModal(newPostModal);
+});
+
+newPostCloseBtn.addEventListener("click", function () {
+  closeModal(newPostModal);
+});
+
+// form handlers
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  console.log("Image URL:", newPostImgInput.value);
-  console.log("Caption:", newPostCaption.value);
-  newPostModal.classList.remove("modal_is-opened");
+  profileNameEl.textContent = editProfileNameInput.value;
+  profileDescriptionEl.textContent = editProfileDescription.value;
+  closeModal(editProfileModal);
 }
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
-  newPostImgEl.textContent = newPostImgInput;
-  newPostCaptionEl.textContent = newPostCaption;
+  newPostImgEl.src = newPostImgInput.value;
+  newPostCaptionEl.textContent = newPostCaption.value;
+  closeModal(newPostModal);
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
-
 newPostForm.addEventListener("submit", handleNewPostSubmit);
