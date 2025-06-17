@@ -62,16 +62,16 @@ newPostCloseBtn.addEventListener("click", function () {
 // form handlers
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  console.log("Image URL:", newPostImgInput.value);
-  console.log("Caption:", newPostCaption.value);
-  newPostForm.reset();
+  profileNameEl.textContent = editProfileNameInput.value;
+  profileDescriptionEl.textContent = editProfileDescription.value;
   closeModal(editProfileModal);
 }
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
-  newPostImgEl.src = newPostImgInput.value;
-  newPostCaptionEl.textContent = newPostCaption.value;
+  console.log("Image URL:", newPostImgInput.value);
+  console.log("Caption:", newPostCaption.value);
+  newPostForm.reset();
   closeModal(newPostModal);
 }
 
