@@ -62,8 +62,9 @@ newPostCloseBtn.addEventListener("click", function () {
 // form handlers
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescription.value;
+  console.log("Image URL:", newPostImgInput.value);
+  console.log("Caption:", newPostCaption.value);
+  newPostForm.reset();
   closeModal(editProfileModal);
 }
 
