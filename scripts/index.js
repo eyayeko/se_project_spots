@@ -1,4 +1,4 @@
-// card array and looping
+// initial cards data — runs immediately when the page loads and stores the starter card info
 const initialCards = [
   {
     name: "Val Thorens",
@@ -26,7 +26,11 @@ const initialCards = [
   },
 ];
 
-// edit profile
+// profile elements — runs immediately and stores the profile text elements
+const profileNameEl = document.querySelector(".profile__name");
+const profileDescriptionEl = document.querySelector(".profile__description");
+
+// edit profile elements — runs immediately and stores the edit profile modal elements
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -37,57 +41,30 @@ const editProfileNameInput = editProfileModal.querySelector(
 const editProfileDescription = editProfileModal.querySelector(
   "#profile-description-input"
 );
-// new post
-const newPostbtn = document.querySelector(".profile__add-btn");
+
+// new post elements — runs immediately and stores the new post modal elements
+const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostForm = newPostModal.querySelector(".modal__form");
 const newPostImgInput = newPostModal.querySelector("#img-link-input");
 const newPostCaption = newPostModal.querySelector("#caption-input");
 
-// profile
-const profileNameEl = document.querySelector(".profile__name");
-const profileDescriptionEl = document.querySelector(".profile__description");
-// post
+// card elements — runs immediately and stores card-related elements
 const newPostImgEl = document.querySelector(".card__image");
 const newPostCaptionEl = document.querySelector(".card__title");
 
-editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescription.value = profileDescriptionEl.textContent;
-  openModal(editProfileModal);
-});
-
-// modal open + close
-
+// open modal function — does not run yet; runs when called by a click or submit handler
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
 
+// close modal function — does not run yet; runs when called by a click or submit handler
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
-// button listeners
-editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescription.value = profileDescriptionEl.textContent;
-  openModal(editProfileModal);
-});
-
-editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
-
-newPostbtn.addEventListener("click", function () {
-  openModal(newPostModal);
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-  closeModal(newPostModal);
-});
-
-// form handlers
+// edit profile submit handler — does not run yet; runs when the edit profile form is submitted
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
@@ -95,6 +72,7 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
+// new post submit handler — does not run yet; runs when the new post form is submitted
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
   console.log("Image URL:", newPostImgInput.value);
@@ -103,10 +81,35 @@ function handleNewPostSubmit(evt) {
   closeModal(newPostModal);
 }
 
+// edit profile button listener — runs immediately to set up the click event; inner function runs when clicked
+editProfileBtn.addEventListener("click", function () {
+  editProfileNameInput.value = profileNameEl.textContent;
+  editProfileDescription.value = profileDescriptionEl.textContent;
+  openModal(editProfileModal);
+});
+
+// edit profile close button listener — runs immediately to set up the click event; closes modal when clicked
+editProfileCloseBtn.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
+
+// new post button listener — runs immediately to set up the click event; opens modal when clicked
+newPostBtn.addEventListener("click", function () {
+  openModal(newPostModal);
+});
+
+// new post close button listener — runs immediately to set up the click event; closes modal when clicked
+newPostCloseBtn.addEventListener("click", function () {
+  closeModal(newPostModal);
+});
+
+// edit profile form listener — runs immediately to set up the submit event; handler runs when submitted
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+// new post form listener — runs immediately to set up the submit event; handler runs when submitted
 newPostForm.addEventListener("submit", handleNewPostSubmit);
 
-// foreach loop for card array and logging to consol
+// initial cards loop — runs immediately when the page loads and logs each card
 initialCards.forEach(function (item) {
   console.log(item.name);
   console.log(item.link);
