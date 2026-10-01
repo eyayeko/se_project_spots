@@ -94,11 +94,18 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-// new post submit handler — does not run yet; runs when the new post form is submitted
+// new post submit handler
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
-  console.log("Image URL:", newPostImgInput.value);
-  console.log("Caption:", newPostCaption.value);
+
+  const inputValues = {
+    name: newPostCaption.value,
+    link: newPostImgInput.value,
+  };
+  const cardElement = getCardElement(inputValues);
+
+  cardsList.prepend(cardElement);
+
   newPostForm.reset();
   closeModal(newPostModal);
 }
