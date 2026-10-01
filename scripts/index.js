@@ -54,6 +54,28 @@ const newPostCaption = newPostModal.querySelector("#caption-input");
 const newPostImgEl = document.querySelector(".card__image");
 const newPostCaptionEl = document.querySelector(".card__title");
 
+// card template
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+
+// Card List //
+const cardsList = document.querySelector(".cards__list");
+
+// setting up the loop for the Card Template - get content for card element then clone it
+function getCardElement(data) {
+  //this is the actual element in the template //
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImgEl = cardElement.querySelector(".card__image");
+
+  cardImgEl.src = data.link;
+  cardImgEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  return cardElement;
+}
+
 // open modal function — does not run yet; runs when called by a click or submit handler
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
@@ -111,6 +133,6 @@ newPostForm.addEventListener("submit", handleNewPostSubmit);
 
 // initial cards loop — runs immediately when the page loads and logs each card
 initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
 });
