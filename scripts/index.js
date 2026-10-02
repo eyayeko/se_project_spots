@@ -73,6 +73,11 @@ function getCardElement(data) {
   cardImgEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+  cardLikeBtnEl.addEventListener("click", () => {
+    cardLikeBtnEl.classList.toggle("card__like-btn_active");
+  });
+
   return cardElement;
 }
 
@@ -102,8 +107,8 @@ function handleNewPostSubmit(evt) {
     name: newPostCaption.value,
     link: newPostImgInput.value,
   };
-  const cardElement = getCardElement(inputValues);
 
+  const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
   newPostForm.reset();
