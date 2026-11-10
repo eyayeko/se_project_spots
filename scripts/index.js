@@ -1,5 +1,9 @@
-// initial cards data — runs immediately when the page loads and stores the starter card info
+// Initial cards displayed when the page loads
 const initialCards = [
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
   {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -26,11 +30,11 @@ const initialCards = [
   },
 ];
 
-// profile elements — runs immediately and stores the profile text elements
+// Profile elements
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
-// edit profile elements — runs immediately and stores the edit profile modal elements
+// Edit Profile modal elements
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -42,7 +46,7 @@ const editProfileDescription = editProfileModal.querySelector(
   "#profile-description-input"
 );
 
-// new post elements — runs immediately and stores the new post modal elements
+// New Post modal elements
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
@@ -50,106 +54,132 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 const newPostImgInput = newPostModal.querySelector("#img-link-input");
 const newPostCaption = newPostModal.querySelector("#caption-input");
 
-// card elements — runs immediately and stores card-related elements
-const newPostImgEl = document.querySelector(".card__image");
-const newPostCaptionEl = document.querySelector(".card__title");
+// Image Preview modal elements
+const previewModal = document.querySelector("#preview-modal");
+const previewImage = previewModal.querySelector(".modal__img");
+const previewCaption = previewModal.querySelector(".modal__caption");
+const previewCloseBtn = previewModal.querySelector(
+  ".modal__close-btn_type_preview"
+);
 
-// card template
+// Card template and card container
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-// Card List //
 const cardsList = document.querySelector(".cards__list");
 
-// setting up the loop for the Card Template - get content for card element then clone it
+// Reusable function to open modals
+function openModal(modal) {
+  modal.classList.add("modal_is-opened");
+}
+
+// Reusable function to close modals
+function closeModal(modal) {
+  modal.classList.remove("modal_is-opened");
+}
+
+// Create a card using the HTML template
 function getCardElement(data) {
-  //this is the actual element in the template //
+  // Clone the card template
   const cardElement = cardTemplate.cloneNode(true);
+
+  // Select the card elements
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImgEl = cardElement.querySelector(".card__image");
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+  const cardDelBtnEl = cardElement.querySelector(".card__delete-btn");
 
+  // Assign the card's image and title
   cardImgEl.src = data.link;
   cardImgEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+  // Like button functionality
   cardLikeBtnEl.addEventListener("click", () => {
     cardLikeBtnEl.classList.toggle("card__like-btn_active");
   });
 
-  const cardDelBtnEl = cardElement.querySelector(".card__delete-btn");
+  // Delete button functionality
   cardDelBtnEl.addEventListener("click", () => {
-    cardDelBtnEl.closest(".card").remove();
+    cardElement.remove();
+  });
+
+  // Image preview functionality
+  cardImgEl.addEventListener("click", () => {
+    previewCaption.textContent = data.name;
+    previewImage.src = data.link;
+    previewImage.alt = data.name;
+
+    openModal(previewModal);
   });
 
   return cardElement;
 }
 
-// open modal function — does not run yet; runs when called by a click or submit handler
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
-}
-
-// close modal function — does not run yet; runs when called by a click or submit handler
-function closeModal(modal) {
-  modal.classList.remove("modal_is-opened");
-}
-
-// edit profile submit handler — does not run yet; runs when the edit profile form is submitted
+// Handle Edit Profile form submission
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
+
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescription.value;
+
   closeModal(editProfileModal);
 }
 
-// new post submit handler
+// Handle New Post form submission
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
+  // Store the new card information
   const inputValues = {
     name: newPostCaption.value,
     link: newPostImgInput.value,
   };
 
+  // Generate a new card and add it first
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
+  // Reset the form and close the modal
   newPostForm.reset();
   closeModal(newPostModal);
 }
 
-// edit profile button listener — runs immediately to set up the click event; inner function runs when clicked
-editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescription.value = profileDescriptionEl.textContent;
+// Open Edit Profile modal and populate current profile information
+editProfileBtn.addEventListener("click", () => {
+  editProfileNameInput.value = profileNameEl.textContent.trim();
+  editProfileDescription.value = profileDescriptionEl.textContent.trim();
+
   openModal(editProfileModal);
 });
 
-// edit profile close button listener — runs immediately to set up the click event; closes modal when clicked
-editProfileCloseBtn.addEventListener("click", function () {
+// Close Edit Profile modal
+editProfileCloseBtn.addEventListener("click", () => {
   closeModal(editProfileModal);
 });
 
-// new post button listener — runs immediately to set up the click event; opens modal when clicked
-newPostBtn.addEventListener("click", function () {
+// Open New Post modal
+newPostBtn.addEventListener("click", () => {
   openModal(newPostModal);
 });
 
-// new post close button listener — runs immediately to set up the click event; closes modal when clicked
-newPostCloseBtn.addEventListener("click", function () {
+// Close New Post modal
+newPostCloseBtn.addEventListener("click", () => {
   closeModal(newPostModal);
 });
 
-// edit profile form listener — runs immediately to set up the submit event; handler runs when submitted
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+// Close Image Preview modal
+previewCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
+});
 
-// new post form listener — runs immediately to set up the submit event; handler runs when submitted
+// Form submission event listeners
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 newPostForm.addEventListener("submit", handleNewPostSubmit);
 
-// initial cards loop — runs immediately when the page loads and logs each card
-initialCards.forEach(function (item) {
+// Generate the initial cards when the page loads
+initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });

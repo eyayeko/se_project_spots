@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Page Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Spots Landing Page" />
     <meta name="author" content="Emily Waner" />
-    <meta name="keywords" content="html, css" />
+    <meta name="keywords" content="html, css, javascript" />
 
+    <!-- Stylesheet and Favicon -->
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 
     <title>Spots</title>
   </head>
+
   <body>
     <div class="page">
+      <!-- Header -->
       <header class="header">
         <img src="./images/logo.svg" alt="Spots logo" class="header__logo" />
       </header>
+
+      <!-- Main Content -->
       <main class="content">
-        <!-- Profile -->
+        <!-- Profile Section -->
         <section class="profile page__section">
           <img
             src="./images/avatar.jpg"
             alt="Bessie Coleman portrait"
             class="profile__avatar"
           />
+
+          <!-- Profile Information -->
           <div class="profile__column">
             <h1 class="profile__name">
               Aliquip qui pork belly anim cupim spare ribs hamburger eu. Enim
@@ -32,107 +40,179 @@
               chuck qui in tri-tip do eiusmod, aute brisket spare ribs ribeye
               andouille
             </h1>
+
             <p class="profile__description">
               Elit bacon ground round dolor pastrami incididunt tempor.
               Prosciutto ut aliqua pastrami do magna pork et sirloin velit
               capicola anim. Leberkas pancetta nulla pork short loin, ut aute
               rump ball tip exercitation prosciutto.
             </p>
+
+            <!-- Edit Profile Button -->
             <button type="button" class="profile__edit-btn">
               <img
                 src="./images/pencil.svg"
-                alt="pencil icon"
+                alt=""
                 class="profile__edit-icon"
               />
               <span>Edit Profile</span>
             </button>
           </div>
+
+          <!-- New Post Button -->
           <button type="button" class="profile__add-btn">
-            <img
-              src="./images/plus.svg"
-              alt="Plus icon"
-              class="profile__add-icon"
-            />
+            <img src="./images/plus.svg" alt="" class="profile__add-icon" />
             <span>New Post</span>
           </button>
         </section>
-        <!-- Cards -->
+
+        <!-- Cards Section -->
         <section class="cards page__section">
-          <ul class="cards__list">
-            <!-- Template for Cards -->
-            <template id="card-template">
-              <li class="card">
-                <button class="card__delete-btn" type="button"></button>
-                <img src="#" alt="" class="card__image" />
-                <div class="card__content">
-                  <h2 class="card__title"></h2>
-                  <button type="button" class="card__like-btn"></button>
-                </div>
-              </li>
-            </template>
-          </ul>
+          <!-- Cards are generated dynamically using JavaScript -->
+          <ul class="cards__list"></ul>
         </section>
       </main>
+
+      <!-- Footer -->
       <footer class="footer">
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
-      <!-- Modal Edit Profile -->
+
+      <!-- Card Template -->
+      <!-- JavaScript clones this template to create each card -->
+      <template id="card-template">
+        <li class="card">
+          <!-- Delete Card Button -->
+          <button
+            class="card__delete-btn"
+            type="button"
+            aria-label="Delete card"
+          ></button>
+
+          <!-- Card Image -->
+          <img class="card__image" />
+
+          <!-- Card Content -->
+          <div class="card__content">
+            <h2 class="card__title"></h2>
+
+            <!-- Like Button -->
+            <button
+              type="button"
+              class="card__like-btn"
+              aria-label="Like card"
+            ></button>
+          </div>
+        </li>
+      </template>
+
+      <!-- Edit Profile Modal -->
       <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
-          <button class="modal__close-btn" type="button"></button>
+          <!-- Close Button -->
+          <button
+            class="modal__close-btn"
+            type="button"
+            aria-label="Close edit profile modal"
+          ></button>
+
           <h2 class="modal__title">Edit Profile</h2>
+
+          <!-- Edit Profile Form -->
           <form class="modal__form">
-            <label for="profile-name-input" class="modal__label"
-              >Name
+            <label for="profile-name-input" class="modal__label">
+              Name
               <input
                 id="profile-name-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your name"
+                required
               />
             </label>
-            <label for="profile-description-input" class="modal__label"
-              >Description
+
+            <label for="profile-description-input" class="modal__label">
+              Description
               <input
                 id="profile-description-input"
                 type="text"
                 class="modal__input"
                 placeholder="Describe yourself"
+                required
               />
             </label>
+
+            <!-- Save Profile Button -->
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>
-      <!-- Modal New Post -->
+
+      <!-- New Post Modal -->
       <div class="modal" id="new-post-modal">
         <div class="modal__container">
-          <button class="modal__close-btn" type="button"></button>
+          <!-- Close Button -->
+          <button
+            class="modal__close-btn"
+            type="button"
+            aria-label="Close new post modal"
+          ></button>
+
           <h2 class="modal__title">New Post</h2>
+
+          <!-- New Post Form -->
           <form class="modal__form">
-            <label for="img-link-input" class="modal__label"
-              >Image Link
+            <label for="img-link-input" class="modal__label">
+              Image Link
               <input
                 id="img-link-input"
                 type="url"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
+                required
               />
             </label>
-            <label for="caption-input" class="modal__label"
-              >Caption
+
+            <label for="caption-input" class="modal__label">
+              Caption
               <input
                 id="caption-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
+                required
               />
             </label>
+
+            <!-- Save New Post Button -->
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>
+
+      <!-- Image Preview Modal -->
+      <!-- Displays a larger image and its caption when a card is clicked -->
+      <div class="modal" id="preview-modal">
+        <div class="modal__img-container">
+          <!-- Close Preview Button -->
+          <button
+            class="modal__close-btn modal__close-btn_type_preview"
+            type="button"
+            aria-label="Close image preview"
+          ></button>
+
+          <!-- Preview Image -->
+          <!-- JavaScript assigns the image source and alt text -->
+          <img class="modal__img" alt="" />
+
+          <!-- Preview Caption -->
+          <!-- JavaScript updates the caption to match the selected card -->
+          <p class="modal__caption"></p>
+        </div>
+      </div>
     </div>
+
+    <!-- JavaScript -->
     <script src="./scripts/index.js"></script>
   </body>
 </html>

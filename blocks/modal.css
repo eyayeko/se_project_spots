@@ -1,37 +1,37 @@
+/* Modal Overlay */
 .modal {
   visibility: hidden;
-  background: #00000080;
+  opacity: 0;
+  z-index: 10;
+  background-color: rgb(0 0 0 / 50%);
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  opacity: 0;
+  box-sizing: border-box;
   transition: visibility 0.3s, opacity 0.3s;
 }
 
+/* Open Modal */
 .modal_is-opened {
   visibility: visible;
   opacity: 1;
 }
 
-.modal__close-btn {
-  color: #212121;
-  background-color: none;
-}
-
+/* Modal Container */
 .modal__container {
   background-color: #fff;
   max-width: 730px;
   width: 100%;
+  box-sizing: border-box;
   border-radius: 8px;
   padding: 32px 50px;
   position: relative;
 }
+
+/* Modal Close Button */
 .modal__close-btn {
   position: absolute;
   width: 40px;
@@ -39,58 +39,74 @@
   top: 32px;
   right: 50px;
   background-image: url(../images/close-btn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   opacity: 0.4;
+  cursor: pointer;
 }
 
 .modal__close-btn:hover {
   opacity: 1;
 }
 
+/* Modal Title */
 .modal__title {
   margin: 0 0 32px;
   padding: 0;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 32px;
+  color: #212121;
 }
 
+/* Modal Form */
 .modal__form {
   display: flex;
   flex-direction: column;
 }
 
+/* Form Labels */
 .modal__label {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
-  color: #212121b2;
+  color: rgb(33 33 33 / 70%);
   margin: 0 0 32px;
 }
+
+/* Form Inputs */
 .modal__input {
   display: block;
   width: 100%;
+  box-sizing: border-box;
   margin: 8px 0 0;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 20px;
   padding: 16px 12px;
   border-radius: 8px;
-  border: 1px solid #21212166;
+  border: 1px solid rgb(33 33 33 / 40%);
 }
 
 .modal__input:hover {
   border-color: #212121;
 }
 
-.modal__input::placeholder {
-  color: #2121214d;
+.modal__input:focus {
+  outline: 2px solid #212121;
+  outline-offset: 2px;
 }
 
+.modal__input::placeholder {
+  color: rgb(33 33 33 / 30%);
+}
+
+/* Submit Button */
 .modal__submit-btn {
   padding: 18px 32px;
-  border: 0;
+  border: none;
   border-radius: 8px;
   color: #fcf5e5;
   background-color: #212121;
@@ -100,24 +116,89 @@
   line-height: 16px;
   max-width: 156px;
   width: 100%;
+  cursor: pointer;
 }
 
+.modal__submit-btn:hover {
+  background-color: rgb(33 33 33 / 80%);
+}
+
+/* Image Preview Container */
+.modal__img-container {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+/* Preview Image */
+.modal__img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Preview Caption */
+.modal__caption {
+  color: #fff;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #212121;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 8px 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* Preview Close Button */
+.modal__close-btn_type_preview {
+  top: 0;
+  right: -52px;
+  opacity: 1;
+}
+
+/* Mobile Styles */
 @media screen and (max-width: 627px) {
+  .modal__container {
+    padding: 24px 20px;
+  }
+
   .modal__title {
     font-size: 20px;
-    margin: 0 0 24px;
+    margin-bottom: 24px;
   }
 
   .modal__label {
-    margin: 0 0 24px;
+    margin-bottom: 24px;
   }
+
   .modal__input {
     font-size: 16px;
-    padding: 16px 12px;
-    box-sizing: border-box;
   }
 
   .modal__submit-btn {
     max-width: none;
+  }
+
+  .modal__img-container {
+    max-width: 75vw;
+  }
+
+  .modal__img {
+    max-width: 75vw;
+  }
+
+  .modal__close-btn_type_preview {
+    right: 0;
+    top: -40px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
   }
 }
